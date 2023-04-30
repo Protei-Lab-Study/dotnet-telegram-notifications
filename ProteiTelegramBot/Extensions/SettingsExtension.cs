@@ -3,6 +3,8 @@ using IL.FluentValidation.Extensions.Options;
 using Microsoft.Extensions.Options;
 using ProteiTelegramBot.Config;
 using ProteiTelegramBot.Config.Validations;
+using ProteiTelegramBot.Models;
+using Telegram.Bot.Types.Enums;
 
 namespace ProteiTelegramBot.Extensions
 {

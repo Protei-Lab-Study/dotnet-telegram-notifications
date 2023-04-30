@@ -22,7 +22,6 @@ public abstract class MergeRequestNotificationBase : Notification
         return text;
     }
 }
-
 public class MergeRequestOpenedNotification : MergeRequestNotificationBase
 {
     private readonly string _url;
@@ -71,3 +70,31 @@ public class MergeRequestMergedNotification : MergeRequestNotificationBase
         return messege;
     }
 }
+
+public class PipelineNotification : MergeRequestNotificationBase
+{
+    private readonly string _url;
+    private readonly string _name;
+    private readonly string _status;
+
+
+    public PipelineNotification(string url,
+        string name, string status)
+    {
+        _url = url;
+        _name = name;
+        _status = status;
+    }
+
+    public override string GetMessage()
+    {
+        var message =
+            "***⚠️ Pipeline failed ***" +
+            "\r\n" +
+            $"Project: [{RemoveInvalidTelegramCharacters(_name)}]({_url})"+
+            "\r\n" +
+            $"Status: {_status}";
+        return message;
+    }
+}
+

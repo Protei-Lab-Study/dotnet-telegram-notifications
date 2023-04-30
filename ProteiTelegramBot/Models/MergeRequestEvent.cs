@@ -1,39 +1,36 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Reflection.Emit;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace ProteiTelegramBot.Models
 {
-    public class MergeRequestEventRequest
+    public class MergeRequestEvent : Event
     {
-        public MergeRequestProject Project { get; set; }
-
         public MergeRequestUser User { get; set; }
-
-        [JsonPropertyName("object_attributes")]
+        public MergeRequestProject Project { get; set; }
+        [JsonProperty("object_attributes")]
         public MergeRequestObjectAttributes ObjectAttributes { get; set; }
     }
-
-    public class MergeRequestUser
+    public class MergeRequestObjectAttributes
     {
-        public string Name { get; set; }
-
-        public string Username { get; set; }
+        public string Title { get; set; }
+        public string State { get; set; }
+        public string Description { get; set; }
+        public string Url { get; set; }
+        public string Action { get; set; }
     }
+
 
     public class MergeRequestProject
     {
         public string Name { get; set; }
     }
 
-    public class MergeRequestObjectAttributes
+    public class MergeRequestUser
     {
-        public string Description { get; set; }
-
-        public string Title { get; set; }
-
-        public string Url { get; set; }
-
-        public string State { get; set; }
-
-        public string Action { get; set; }
+        public string Name { get; set; }
+        public string Username { get; set; }
     }
+
+
 }
